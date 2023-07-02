@@ -6,21 +6,13 @@ podName="web-app"
 
 statusPod=$(kubectl get  pods --namespace $namespace | grep -i $podName | awk '{print $3}')
 
-# Problems pod
-for problem in $statusPod
+for pod in $statusPod
 do
-	if [ $problem != 'Running' ]
+	if [ $pod != 'Running' ]
 	then
-		echo "PROBLEM: $problem" 
+		echo "PROBLEM: $pod" 
+	else
+		echo "OK: $pod"
 	fi
 done
-
-# Works pod
-#for works in $statusPod
-#do
-#        if [ $works = 'Running' ]
-#        then
-#		 echo "OK: $works"
-#        fi
-#done
 
